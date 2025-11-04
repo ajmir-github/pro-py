@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drums</title>
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div
+      class="min-h-[100dvh] w-full flex flex-col bg-gray-900 p-2 gap-2 text-white"
+    >
+      <div class="text-xl text-center uppercase">
+        Kit: <span id="kit-name">KitName</span>
+      </div>
+      <div class="grow grid grid-cols-3 gap-2 text-4xl font-bold">
+        <button
+          class="bg-slate-800 rounded-lg active:opacity-90 transition duration-150"
+          id="btn-/"
+        >
+          /
+        </button>
+        <button
+          class="bg-slate-800 rounded-lg active:opacity-90 transition duration-150"
+          id="btn-*"
+        >
+          *
+        </button>
+        <button
+          class="bg-slate-800 rounded-lg active:opacity-90 transition duration-150"
+          id="btn--"
+          onclick="changeKit()"
+        >
+          -
+        </button>
+        <button
+          class="bg-orange-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-7"
+          onpointerdown="onKeyDown('7')"
+          onpointerup="onkeyUp('7')"
+          onpointercancel="onkeyUp('7')"
+        >
+          7
+        </button>
+        <button
+          class="bg-emerald-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-8"
+          onpointerdown="onKeyDown('8')"
+          onpointerup="onkeyUp('8')"
+          onpointercancel="onkeyUp('8')"
+        >
+          8
+        </button>
+        <button
+          class="bg-pink-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-9"
+          onpointerdown="onKeyDown('9')"
+          onpointerup="onkeyUp('9')"
+          onpointercancel="onkeyUp('9')"
+        >
+          9
+        </button>
+        <button
+          class="bg-amber-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-4"
+          onpointerdown="onKeyDown('4')"
+          onpointerup="onkeyUp('4')"
+          onpointercancel="onkeyUp('4')"
+        >
+          4
+        </button>
+        <button
+          class="bg-teal-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-5"
+          onpointerdown="onKeyDown('5')"
+          onpointerup="onkeyUp('5')"
+          onpointercancel="onkeyUp('5')"
+        >
+          5
+        </button>
+        <button
+          class="bg-sky-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-6"
+          onpointerdown="onKeyDown('6')"
+          onpointerup="onkeyUp('6')"
+          onpointercancel="onkeyUp('6')"
+        >
+          6
+        </button>
+        <button
+          class="bg-yellow-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-1"
+          onpointerdown="onKeyDown('1')"
+          onpointerup="onkeyUp('1')"
+          onpointercancel="onkeyUp('1')"
+        >
+          1
+        </button>
+        <button
+          class="bg-blue-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-2"
+          onpointerdown="onKeyDown('2')"
+          onpointerup="onkeyUp('2')"
+          onpointercancel="onkeyUp('2')"
+        >
+          2
+        </button>
+        <button
+          class="bg-purple-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-3"
+          onpointerdown="onKeyDown('3')"
+          onpointerup="onkeyUp('3')"
+          onpointercancel="onkeyUp('3')"
+        >
+          3
+        </button>
+        <button
+          class="bg-red-700 rounded-lg active:opacity-90 row-span-4 transition duration-150 col-span-2"
+          id="btn-0"
+          onpointerdown="onKeyDown('0')"
+          onpointerup="onkeyUp('0')"
+          onpointercancel="onkeyUp('0')"
+        >
+          0
+        </button>
+        <button
+          class="bg-gray-700 rounded-lg active:opacity-90 row-span-4 transition duration-150"
+          id="btn-."
+          onpointerdown="onKeyDown('.')"
+          onpointerup="onkeyUp('.')"
+          onpointercancel="onkeyUp('.')"
+        >
+          .
+        </button>
+      </div>
+    </div>
+
+    <script src="/joystick.js"></script>
+  </body>
+</html>

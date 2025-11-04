@@ -67,32 +67,31 @@ const keys = {
   rim: ".",
   changeKit: "-",
 };
+let currentKit = {};
 
-function play(path) {
-  const sound = new Audio(path);
-  sound.play();
+function loadKit() {
+  const { name, ...sounds } = kits[kitIndex];
+  document.getElementById("kit-name").innerText = name;
+
+  currentKit = { name };
+  for (const [key, path] of Object.entries(sounds)) {
+    currentKit[keys[key]] = new Audio(path);
+  }
 }
 
-document.getElementById("kit-name").innerText = kits[kitIndex].name;
+loadKit();
+
+function playSound(key) {
+  const sound = currentKit && currentKit[key];
+  if (!sound) return;
+  if (sound.currentTime > 0) sound.currentTime = 0;
+  sound.play();
+}
 
 function changeKit() {
   kitIndex++;
   if (kits.length === kitIndex) kitIndex = 0;
-  document.getElementById("kit-name").innerText = kits[kitIndex].name;
-}
-
-function playSound(key) {
-  const kit = kits[kitIndex];
-  if (key === keys.kick) return play(kit.kick);
-  if (key === keys.snare) return play(kit.snare);
-  if (key === keys.tom1) return play(kit.tom1);
-  if (key === keys.tom2) return play(kit.tom2);
-  if (key === keys.floor) return play(kit.floor);
-  if (key === keys.crash) return kit.crash && play(kit.crash);
-  if (key === keys.ride) return kit.ride && play(kit.ride);
-  if (key === keys.rim) return kit.rim && play(kit.rim);
-  if (key === keys.openhh) return kit.openhh && play(kit.openhh);
-  if (key === keys.closehh) return kit.closehh && play(kit.closehh);
+  loadKit();
 }
 
 const pressedKeys = new Set();
