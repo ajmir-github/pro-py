@@ -26,6 +26,19 @@ const kits = [
     rim: "/audio/powerful/snare-stick.mp3",
   },
   {
+    name: "monumental",
+    kick: "/audio/monumental/bass.mp3",
+    snare: "/audio/monumental/snare-drum.mp3",
+    tom1: "/audio/monumental/tom1.mp3",
+    tom2: "/audio/monumental/tom2.mp3",
+    floor: "/audio/monumental/floor-tom.mp3",
+    openhh: "/audio/monumental/hihat-open.mp3",
+    closehh: "/audio/monumental/hihat.mp3",
+    crash: "/audio/monumental/crash.mp3",
+    ride: "/audio/monumental/ride.mp3",
+    rim: "/audio/monumental/snare-stick.mp3",
+  },
+  {
     name: "realDrum",
     kick: "/audio/real-drum/kick.mp3",
     snare: "/audio/real-drum/snare.mp3",
@@ -71,9 +84,7 @@ let currentKit = {};
 
 function loadKit() {
   const { name, ...sounds } = kits[kitIndex];
-  document.getElementById("kit-name").innerText = name;
-
-  currentKit = { name };
+  console.log({ name });
   for (const [key, path] of Object.entries(sounds)) {
     currentKit[keys[key]] = new Audio(path);
   }
@@ -101,11 +112,9 @@ const onKeyDown = (key) => {
   if (pressedKeys.has(key)) return;
   pressedKeys.add(key);
   playSound(key);
-  document.getElementById(`btn-${key}`).classList.add("opacity-50");
 };
 const onkeyUp = (key) => {
   pressedKeys.delete(key);
-  document.getElementById(`btn-${key}`).classList.remove("opacity-50");
 };
 document.addEventListener("keydown", (event) => onKeyDown(event.key));
 
