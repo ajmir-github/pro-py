@@ -60,8 +60,6 @@ const kits = [
     floor: "/audio/kit-6/bass.wav",
     openhh: "/audio/kit-6/hihat.wav",
     closehh: "/audio/kit-6/maracas.wav",
-    // crash: "/audio/kit-6/crashl.mp3",
-    // ride: "/audio/kit-6/ride.mp3",
     rim: "/audio/kit-6/clap.wav",
   },
 ];
@@ -82,11 +80,15 @@ const keys = {
 };
 let currentKit = {};
 
+let speaker = -1;
+
 function loadKit() {
   const { name, ...sounds } = kits[kitIndex];
-  console.log({ name });
+  document.getElementById("kit-name").innerText = name;
   for (const [key, path] of Object.entries(sounds)) {
-    currentKit[keys[key]] = new Audio(path);
+    const sound = new Audio(path);
+    sound.preload = "auto";
+    currentKit[keys[key]] = sound;
   }
 }
 
@@ -105,17 +107,17 @@ function changeKit() {
   loadKit();
 }
 
+const bgElement = document.getElementById("bg");
 const pressedKeys = new Set();
-const onKeyDown = (key) => {
+document.addEventListener("keydown", ({ key }) => {
+  bgElement.classList.add("bg-red-500");
   if (key === "-") return changeKit();
-  console.log(key);
   if (pressedKeys.has(key)) return;
   pressedKeys.add(key);
   playSound(key);
-};
-const onkeyUp = (key) => {
-  pressedKeys.delete(key);
-};
-document.addEventListener("keydown", (event) => onKeyDown(event.key));
+});
 
-document.addEventListener("keyup", (event) => onkeyUp(event.key));
+document.addEventListener("keyup", ({ key }) => {
+  bgElement.classList.remove("bg-red-500");
+  pressedKeys.delete(key);
+});
